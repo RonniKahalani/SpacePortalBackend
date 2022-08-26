@@ -1,7 +1,7 @@
 # SpacePortalBackend
 ![image](https://user-images.githubusercontent.com/8819076/186982448-eb34f465-60ae-4706-81d6-263b153c9b6c.png)
 
-This is a Spring Boot REST/JPA demo, used in educational purposes.
+This is a Spring Boot REST/JPA backend demo, used in educational purposes.
 
 The app creates four REST entrypoints:
 - /api/v1/customers
