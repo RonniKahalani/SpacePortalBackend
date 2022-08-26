@@ -17,7 +17,9 @@ The data comes from a H2 memory database, with the entity tables, data and join 
 
 A customer can have many reservations
 A reservation can have many customers/travelers
-Customer and Reservation have a many to many relationship
+Customer and Reservation have a many-to-many relationship.
 
 The controllers primarily only exposes DTOs - Data Transfer Objects, not the original entities, to enable handling different external formats (JSON, XML...).
-So each entity class has a corresponding entityDto class, which also manages the @JsonBackReference and @JsonBackReference.
+So each entity class has a corresponding entityDto class, which also manages the following Json annotations, to control and avoid recursive stack overflows.  
+- @JsonBackReference (set when you do not want a member/property rendered recursivly in json).
+- @JsonManagedReference (set when you want member/property rendered in json).
