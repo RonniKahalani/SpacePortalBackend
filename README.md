@@ -3,7 +3,7 @@
 
 This is a Spring Boot REST/JPA backend demo, used in educational purposes.
 
-The app creates four REST entrypoints:
+The app creates four REST API entry points:
 - /api/v1/customers
 - /api/v1/planets
 - /api/v1/spaceships
