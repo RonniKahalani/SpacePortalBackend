@@ -2,10 +2,10 @@
 This is a Spring Boot REST/JPA demo, used in educational purposes.
 
 The app creates four REST entrypoints:
-- http://localhost:8080/api/v1/customers
-- http://localhost:8080/api/v1/planets
-- http://localhost:8080/api/v1/spaceships
-- http://localhost:8080/api/v1/reservations
+- /api/v1/customers
+- /api/v1/planets
+- /api/v1/spaceships
+- /api/v1/reservations
 
 The data comes from a H2 memory database, with the entity tables, data and join tables:
 - Customer
