@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Customer API Controller.
+ * Customer REST API Controller.
  */
 @CrossOrigin // Allow all domain origins.
 @RestController
@@ -42,9 +42,10 @@ public class CustomerController {
     }
 
     /**
-     * Returns all customers.
+     * Handles getting/finding all customers.
      *
      * @return customers
+     * @see <a href="http://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">HTTP GET</a>
      */
     @GetMapping
     ResponseEntity<List<CustomerDto>> findAll() {
@@ -52,6 +53,14 @@ public class CustomerController {
         return ResponseEntity.ok().body(DtoFactory.fromCustomers(all));
     }
 
+    /**
+     * Handles getting/finding a customer.
+     *
+     * @param id
+     * @return customer
+     * @throws ResourceNotFoundException
+     * @see <a href="http://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">HTTP GET</a>
+     */
     @GetMapping("/{id}")
     public ResponseEntity<CustomerDto> find(@PathVariable("id") Long id) throws ResourceNotFoundException {
         Optional<Customer> item = Optional.of(service.find(id)
@@ -59,23 +68,52 @@ public class CustomerController {
         return ResponseEntity.ok().body(DtoFactory.fromCustomer(item.get()));
     }
 
+    /**
+     * Handles posting/creating a customer.
+     *
+     * @param dto
+     * @return newly created customer
+     * @see <a href="http://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST">HTTP POST</a>
+     */
     @PostMapping
     public ResponseEntity<CustomerDto> create(@Valid @RequestBody CustomerDto dto) {
         Customer item = service.create(DtoFactory.fromCustomerDto(dto));
         return ResponseEntity.ok().body(DtoFactory.fromCustomer(item));
     }
 
+    /**
+     * Handles putting a customer.
+     *
+     * @param id
+     * @param dto
+     * @return updated customer
+     * @see <a href="http://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT">HTTP PUT</a>
+     */
     @PutMapping("/{id}")
     public ResponseEntity<CustomerDto> put(@PathVariable("id") Long id, @Valid @RequestBody CustomerDto dto) {
         return ResponseEntity.ok().body(update(id, dto));
     }
 
+    /**
+     * Handles patching a customer.
+     *
+     * @param id
+     * @param dto
+     * @return updated customer
+     * @see <a href="http://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH">HTTP PATCH</a>
+     */
     @PatchMapping("/{id}")
     public ResponseEntity<CustomerDto> patch(@PathVariable("id") Long id, @Valid @RequestBody CustomerDto dto) {
         return ResponseEntity.ok().body(update(id, dto));
-
     }
 
+    /**
+     * Handles deleting a customer.
+     *
+     * @param id
+     * @return a null value customer
+     * @see <a href="http://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE">HTTP DELETE</a>
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Customer> delete(@PathVariable("id") Long id) {
         service.find(id).orElseThrow(() -> new ResourceNotFoundException("Customer %d not found.".formatted(id)));
@@ -84,10 +122,17 @@ public class CustomerController {
         return ResponseEntity.ok().body(delete);
     }
 
+    /**
+     * Updates a customer Dto from another customer Dto.
+     *
+     * @param id
+     * @param dto
+     * @return the updated customer Dto
+     */
     private CustomerDto update(Long id, CustomerDto dto) {
         Optional<Customer> item = service.update(id, DtoFactory.fromCustomerDto(dto));
 
-        if(!item.isPresent()) {
+        if (!item.isPresent()) {
             throw new ResourceNotFoundException("Customer %d not found".formatted(id));
         }
 
