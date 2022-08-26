@@ -21,6 +21,6 @@ Customer and Reservation have a many-to-many relationship.
 
 The controllers primarily only exposes DTOs - Data Transfer Objects, not the original entities, to enable handling different external formats (JSON, XML...).
 So each entity class has a corresponding entityDto class, which also manages the following Json annotations, to control and avoid recursive stack overflows.  
-- [@JsonBackReference](https://www.tutorialspoint.com/jackson_annotations/jackson_annotations_jsonbackreference.htm) (set when you do not want a member/property rendered recursivly in json).
-- [@JsonManagedReference](https://www.tutorialspoint.com/jackson_annotations/jackson_annotations_jsonmanagedreference.htm) (set when you want member/property rendered in json).
+- [@JsonBackReference](https://www.tutorialspoint.com/jackson_annotations/jackson_annotations_jsonbackreference.htm) is the back part of reference – it will be omitted from serialization.
+- [@JsonManagedReference](https://www.tutorialspoint.com/jackson_annotations/jackson_annotations_jsonmanagedreference.htm) is the forward part of reference – the one that gets serialized normally.
 @JsonManagedReference is the forward part of reference – the one that gets serialized normally. @JsonBackReference is the back part of reference – it will be omitted from serialization.
