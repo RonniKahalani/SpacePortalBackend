@@ -91,7 +91,7 @@ public class CustomerController {
      */
     @PutMapping("/{id}")
     public ResponseEntity<CustomerDto> put(@PathVariable("id") Long id, @Valid @RequestBody CustomerDto dto) {
-        return ResponseEntity.ok().body(update(id, dto));
+        return ResponseEntity.ok().body(update(id, dto, false));
     }
 
     /**
@@ -104,7 +104,7 @@ public class CustomerController {
      */
     @PatchMapping("/{id}")
     public ResponseEntity<CustomerDto> patch(@PathVariable("id") Long id, @Valid @RequestBody CustomerDto dto) {
-        return ResponseEntity.ok().body(update(id, dto));
+        return ResponseEntity.ok().body(update(id, dto, true));
     }
 
     /**
@@ -129,13 +129,10 @@ public class CustomerController {
      * @param dto
      * @return the updated customer Dto
      */
-    private CustomerDto update(Long id, CustomerDto dto) {
-        Optional<Customer> item = service.update(id, DtoFactory.fromCustomerDto(dto));
-
-        if (!item.isPresent()) {
+    private CustomerDto update(Long id, CustomerDto dto, boolean partial) {
+        Optional<Customer> item = Optional.ofNullable(service.update(id, DtoFactory.fromCustomerDto(dto), partial).orElseThrow(() -> {
             throw new ResourceNotFoundException("Customer %d not found".formatted(id));
-        }
-
+        }));
         return DtoFactory.fromCustomer(item.get());
     }
 }

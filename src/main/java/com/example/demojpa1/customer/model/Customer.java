@@ -35,21 +35,19 @@ public class Customer {
     /**
      * Customer first name.
      */
-    @NotNull
     @Column(name = "FIRSTNAME")
     private String firstName;
 
     /**
      * Customer last name.
      */
-    @NotNull
     @Column(name = "LASTNAME")
     private String lastName;
 
     /**
      * List of reservations held by the customer.
      */
-    @JsonBackReference
+    //@JsonBackReference
     @ManyToMany(cascade = {
             CascadeType.MERGE
     })
@@ -60,7 +58,7 @@ public class Customer {
     private List<Reservation> reservations = new ArrayList<>();
 
     /**
-     * Contructs a new customer.
+     * Constructs a new customer.
      *
      * @param firstName
      * @param lastName
@@ -70,15 +68,22 @@ public class Customer {
         this.lastName = lastName;
     }
 
+    /**
+     * Constructs a new customer.
+     *
+     * @param firstName
+     * @param lastName
+     * @param reservations
+     */
     public Customer(String firstName, String lastName, List<Reservation> reservations) {
         this(firstName, lastName);
         this.reservations = reservations;
     }
 
-    public Customer updateFrom(Customer customer) {
-        this.firstName = customer.firstName;
-        this.lastName = customer.lastName;
-        this.reservations = customer.reservations;
+    public Customer updateFrom(Customer customer, boolean partial) {
+        if(!partial || customer.firstName!=null) {this.firstName = customer.firstName;}
+        if(!partial || customer.lastName!=null) {this.lastName = customer.lastName;}
+        if(!partial || customer.reservations!=null) {this.reservations = customer.reservations;}
         return this;
     }
 

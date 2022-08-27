@@ -34,10 +34,10 @@ public class PlanetService {
         return repository.save(planet);
     }
 
-    public Optional<Planet> update( Long id, Planet planet) {
+    public Optional<Planet> update( Long id, Planet planet, boolean partial) {
         return repository.findById(id)
                 .map(oldItem -> {
-                    return repository.save(oldItem.updateFrom(planet));
+                    return repository.save(oldItem.updateFrom(planet, partial));
                 });
     }
 

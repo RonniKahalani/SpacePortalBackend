@@ -12,18 +12,18 @@ import java.util.List;
 public class PlanetDto implements Serializable {
     private Long id;
     private String name;
-    private double mass;
-    private double diameter;
-    private int density;
-    private double gravity;
-    private double hoursPerDay;
-    private double distanceFromSun;
-    private int meanTemp;
-    private int moons;
+    private Double mass;
+    private Double diameter;
+    private Integer density;
+    private Double gravity;
+    private Double hoursPerDay;
+    private Double distanceFromSun;
+    private Integer meanTemp;
+    private Integer moons;
     private String notes;
     private String imageUrl;
     private String videoUrl;
     private String thumbnailUrl;
-    @JsonManagedReference
+    //@JsonManagedReference
     private List<PlanetTypeDto> types;
 }

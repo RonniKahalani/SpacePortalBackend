@@ -90,7 +90,7 @@ public class SpaceshipController {
      */
     @PutMapping("/{id}")
     public ResponseEntity<SpaceshipDto> put(@PathVariable("id") Long id, @Valid @RequestBody SpaceshipDto dto) {
-        return ResponseEntity.ok().body(update(id, dto));
+        return ResponseEntity.ok().body(update(id, dto, false));
     }
 
     /**
@@ -103,7 +103,7 @@ public class SpaceshipController {
      */
     @PatchMapping("/{id}")
     public ResponseEntity<SpaceshipDto> patch(@PathVariable("id") Long id, @Valid @RequestBody SpaceshipDto dto) {
-        return ResponseEntity.ok().body(update(id, dto));
+        return ResponseEntity.ok().body(update(id, dto, true));
     }
 
     /**
@@ -128,8 +128,8 @@ public class SpaceshipController {
      * @param dto
      * @return the updated spaceship Dto
      */
-    private SpaceshipDto update(Long id, SpaceshipDto dto) {
-        Optional<Spaceship> item = service.update(id, DtoFactory.fromSpaceshipDto(dto));
+    private SpaceshipDto update(Long id, SpaceshipDto dto, boolean partial) {
+        Optional<Spaceship> item = service.update(id, DtoFactory.fromSpaceshipDto(dto), partial);
 
         if (!item.isPresent()) {
             throw new ResourceNotFoundException("Spaceship %d not found".formatted(id));

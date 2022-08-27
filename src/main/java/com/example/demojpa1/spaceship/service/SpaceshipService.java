@@ -1,7 +1,5 @@
 package com.example.demojpa1.spaceship.service;
 
-import com.example.demojpa1.advice.ResourceNotFoundException;
-import com.example.demojpa1.customer.model.Customer;
 import com.example.demojpa1.spaceship.model.Spaceship;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -34,10 +32,10 @@ public class SpaceshipService {
         return repository.save(spaceship);
     }
 
-    public Optional<Spaceship> update(Long id, Spaceship spaceship) {
+    public Optional<Spaceship> update(Long id, Spaceship spaceship, boolean partial) {
         return repository.findById(id)
                 .map(oldItem -> {
-                    return repository.save( oldItem.updateWith(spaceship));
+                    return repository.save( oldItem.updateFrom(spaceship, partial));
                 });
     }
 

@@ -1,10 +1,10 @@
 package com.example.demojpa1.dto;
 
+import com.example.demojpa1.reservation.model.Reservation;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,14 +12,6 @@ import java.util.List;
 @Data
 public class CustomerDto implements Serializable {
     private Long id;
-
-    @NotNull
     private String firstName;
-
-    @NotNull
     private String lastName;
-
-   @JsonBackReference
-    private List<ReservationDto> reservations;
-
 }

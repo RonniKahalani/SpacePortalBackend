@@ -1,6 +1,5 @@
 package com.example.demojpa1.planet.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Planet JPA entity class.
+ *
+ * @author Jaron Kahalani
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,28 +29,28 @@ public class Planet {
     private String name;
 
     @Column(name = "MASS")
-    private double mass;
+    private Double mass;
 
     @Column(name = "DIAMETER")
-    private double diameter;
+    private Double diameter;
 
     @Column(name = "DENSITY")
-    private int density;
+    private Integer density;
 
     @Column(name = "GRAVITY")
-    private double gravity;
+    private Double gravity;
 
     @Column(name = "HOURSPERDAY")
-    private double hoursPerDay;
+    private Double hoursPerDay;
 
     @Column(name = "DISTANCEFROMSUN")
-    private double distanceFromSun;
+    private Double distanceFromSun;
 
     @Column(name = "MEANTEMP")
-    private int meanTemp;
+    private Integer meanTemp;
 
     @Column(name = "MOONS")
-    private int moons;
+    private Integer moons;
 
     @Column(name = "NOTES")
     private String notes;
@@ -70,6 +74,24 @@ public class Planet {
     )
     private List<PlanetType> types = new ArrayList<>();
 
+    /**
+     * Constructs a new planet.
+     *
+     * @param name
+     * @param mass
+     * @param diameter
+     * @param density
+     * @param gravity
+     * @param hoursPerDay
+     * @param distanceFromSun
+     * @param meanTemp
+     * @param moons
+     * @param notes
+     * @param imageUrl
+     * @param videoUrl
+     * @param thumbnailUrl
+     * @param types
+     */
     public Planet(String name, double mass, double diameter, int density, double gravity, double hoursPerDay, double distanceFromSun, int meanTemp, int moons, String notes, String imageUrl, String videoUrl, String thumbnailUrl, List<PlanetType> types) {
         this.name = name;
         this.mass = mass;
@@ -87,21 +109,21 @@ public class Planet {
         this.types = types;
     }
 
-    public Planet updateFrom(Planet planet) {
-        this.name = planet.name;
-        this.mass = planet.mass;
-        this.diameter = planet.diameter;
-        this.density = planet.density;
-        this.gravity = planet.gravity;
-        this.hoursPerDay = planet.hoursPerDay;
-        this.distanceFromSun = planet.distanceFromSun;
-        this.meanTemp = planet.meanTemp;
-        this.moons = planet.moons;
-        this.notes = planet.notes;
-        this.imageUrl = planet.imageUrl;
-        this.videoUrl = planet.videoUrl;
-        this.thumbnailUrl = planet.thumbnailUrl;
-        this.types = planet.types;
+    public Planet updateFrom(Planet planet, boolean partial) {
+        if(!partial || planet.name!=null) {this.name = planet.name;}
+        if(!partial || planet.mass!=null) {this.mass = planet.mass;}
+        if(!partial || planet.diameter!=null) {this.diameter = planet.diameter;}
+        if(!partial || planet.density!=null) {this.density = planet.density;}
+        if(!partial || planet.gravity!=null) {this.gravity = planet.gravity;}
+        if(!partial || planet.hoursPerDay!=null) {this.hoursPerDay = planet.hoursPerDay;}
+        if(!partial || planet.distanceFromSun!=null) {this.distanceFromSun = planet.distanceFromSun;}
+        if(!partial || planet.meanTemp!=null) {this.meanTemp = planet.meanTemp;}
+        if(!partial || planet.moons!=null) {this.moons = planet.moons;}
+        if(!partial || planet.notes!=null) {this.notes = planet.notes;}
+        if(!partial || planet.imageUrl!=null) {this.imageUrl = planet.imageUrl;}
+        if(!partial || planet.videoUrl!=null) {this.videoUrl = planet.videoUrl;}
+        if(!partial || planet.thumbnailUrl!=null) {this.thumbnailUrl = planet.thumbnailUrl;}
+        if(!partial || planet.types!=null) {this.types = planet.types;}
         return this;
     }
 

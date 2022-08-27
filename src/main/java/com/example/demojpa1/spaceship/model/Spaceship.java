@@ -1,8 +1,6 @@
 package com.example.demojpa1.spaceship.model;
 
 import com.example.demojpa1.reservation.model.Reservation;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,15 +26,14 @@ public class Spaceship {
     private String name;
 
     @Column(name = "MAXPASSENGERS")
-    private int maxPassengers;
+    private Integer maxPassengers;
 
     @Column(name = "MAXSPEED")
-    private int maxSpeed;
+    private Integer maxSpeed;
 
     @Column(name = "MAXLOAD")
-    private int maxLoad;
+    private Integer maxLoad;
 
-    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     @Column(name = "WEIGHT")
     private Date buildDate;
 
@@ -97,18 +94,16 @@ public class Spaceship {
         this.reservations = reservations;
     }
 
-    public Spaceship updateWith(Spaceship spaceship) {
-        return new Spaceship(
-                spaceship.name,
-                spaceship.maxPassengers,
-                spaceship.maxSpeed,
-                spaceship.maxLoad,
-                spaceship.buildDate,
-                spaceship.notes,
-                spaceship.imageUrl,
-                spaceship.videoUrl,
-                spaceship.thumbnailUrl,
-                spaceship.reservations);
+    public Spaceship updateFrom(Spaceship spaceship, boolean partial) {
+        if(!partial || spaceship.name!=null) {this.name = spaceship.name;}
+        if(!partial || spaceship.buildDate!=null) {this.buildDate = spaceship.buildDate;}
+        if(!partial || spaceship.maxLoad!=null) {this.maxLoad = spaceship.maxLoad;}
+        if(!partial || spaceship.maxSpeed!=null) {this.maxSpeed = spaceship.maxSpeed;}
+        if(!partial || spaceship.maxPassengers!=null) {this.maxPassengers = spaceship.maxPassengers;}
+        if(!partial || spaceship.imageUrl!=null) {this.imageUrl = spaceship.imageUrl;}
+        if(!partial || spaceship.videoUrl!=null) {this.videoUrl = spaceship.videoUrl;}
+        if(!partial || spaceship.thumbnailUrl!=null) {this.thumbnailUrl = spaceship.thumbnailUrl;}
+        return this;
     }
 
     @Override

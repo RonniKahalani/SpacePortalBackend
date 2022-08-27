@@ -27,19 +27,16 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     @Column(name = "STARTDATE")
     Date startDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     @Column(name = "ENDDATE")
     Date endDate;
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @ManyToMany(mappedBy = "reservations")
     List<Customer> customers = new ArrayList<>();
 
-    @NonNull
     @ManyToOne
     Planet planet;
 

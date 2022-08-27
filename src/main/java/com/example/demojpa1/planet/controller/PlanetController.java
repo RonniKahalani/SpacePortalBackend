@@ -90,7 +90,7 @@ public class PlanetController {
      */
     @PutMapping("/{id}")
     public ResponseEntity<PlanetDto> put(@PathVariable("id") Long id, @Valid @RequestBody PlanetDto dto) {
-        return ResponseEntity.ok().body(update(id, dto));
+        return ResponseEntity.ok().body(update(id, dto, false));
     }
 
     /**
@@ -103,7 +103,7 @@ public class PlanetController {
      */
     @PatchMapping("/{id}")
     public ResponseEntity<PlanetDto> patch(@PathVariable("id") Long id, @Valid @RequestBody PlanetDto dto) {
-        return ResponseEntity.ok().body(update(id, dto));
+        return ResponseEntity.ok().body(update(id, dto, true));
     }
 
     /**
@@ -128,8 +128,8 @@ public class PlanetController {
      * @param dto
      * @return the updated spaceship Dto
      */
-    private PlanetDto update(Long id, PlanetDto dto) {
-        Optional<Planet> item = service.update(id, DtoFactory.fromPlanetDto(dto));
+    private PlanetDto update(Long id, PlanetDto dto, boolean partial) {
+        Optional<Planet> item = service.update(id, DtoFactory.fromPlanetDto(dto), partial);
 
         if (!item.isPresent()) {
             throw new ResourceNotFoundException("Planet %d not found".formatted(id));

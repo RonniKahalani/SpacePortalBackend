@@ -43,10 +43,10 @@ public class CustomerService {
         return repository.save(customer);
     }
 
-    public Optional<Customer> update(Long id, Customer customer){
+    public Optional<Customer> update(Long id, Customer customer, boolean partial) {
         return repository.findById(id)
                 .map(oldItem -> {
-                    return repository.save(oldItem.updateFrom(customer));
+                    return repository.save(oldItem.updateFrom(customer, partial));
                 });
     }
 
