@@ -24,7 +24,6 @@ public class PlanetType {
     @Column(name = "NAME")
     private String name;
 
-    //@JsonBackReference
     @ManyToMany(mappedBy = "types")
     private List<Planet> planets = new ArrayList<>();
 

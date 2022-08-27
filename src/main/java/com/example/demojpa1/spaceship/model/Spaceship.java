@@ -49,7 +49,6 @@ public class Spaceship {
     @Column(name = "THUMBNAILURL")
     private String thumbnailUrl;
 
-    //@JsonBackReference
     @ManyToMany(cascade = {
             CascadeType.MERGE
     })

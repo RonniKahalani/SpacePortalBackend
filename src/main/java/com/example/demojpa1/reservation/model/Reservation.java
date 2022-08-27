@@ -33,7 +33,6 @@ public class Reservation {
     @Column(name = "ENDDATE")
     Date endDate;
 
-    //@JsonManagedReference
     @ManyToMany(mappedBy = "reservations")
     List<Customer> customers = new ArrayList<>();
 

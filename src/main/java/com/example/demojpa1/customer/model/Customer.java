@@ -47,7 +47,6 @@ public class Customer {
     /**
      * List of reservations held by the customer.
      */
-    //@JsonBackReference
     @ManyToMany(cascade = {
             CascadeType.MERGE
     })

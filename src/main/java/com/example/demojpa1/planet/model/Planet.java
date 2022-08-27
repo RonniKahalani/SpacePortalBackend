@@ -64,7 +64,6 @@ public class Planet {
     @Column(name = "THUMBNAILURL")
     private String thumbnailUrl;
 
-    //@JsonManagedReference
     @ManyToMany(cascade = {
             CascadeType.MERGE
     })
