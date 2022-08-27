@@ -10,7 +10,6 @@ import com.example.demojpa1.reservation.model.Reservation;
 import com.example.demojpa1.reservation.repository.ReservationRepository;
 import com.example.demojpa1.spaceship.model.Spaceship;
 import com.example.demojpa1.spaceship.repository.SpaceshipRepository;
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -28,11 +27,6 @@ public class DemoJpa1Application {
 
     public static void main(String[] args) {
         SpringApplication.run(DemoJpa1Application.class, args);
-    }
-
-    @Bean
-    public static ModelMapper modelMapper() {
-        return new ModelMapper();
     }
 
     @Bean

@@ -1,21 +1,16 @@
 package com.example.demojpa1.factory;
 
-import com.example.demojpa1.DemoJpa1Application;
 import com.example.demojpa1.customer.model.Customer;
 import com.example.demojpa1.dto.*;
 import com.example.demojpa1.planet.model.Planet;
 import com.example.demojpa1.planet.model.PlanetType;
 import com.example.demojpa1.reservation.model.Reservation;
 import com.example.demojpa1.spaceship.model.Spaceship;
-import org.modelmapper.ModelMapper;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DtoFactory {
-
-    private static ModelMapper modelMapper = DemoJpa1Application.modelMapper();
 
     /*
         Customers
@@ -47,7 +42,7 @@ public class DtoFactory {
     }
 
     public static List<Customer> fromCustomerDtos(List<CustomerDto> customerDtos) {
-        return customerDtos.stream().map(obj -> modelMapper.map(obj, Customer.class))
+        return customerDtos.stream().map(obj -> fromCustomerDto(obj))
                 .collect(Collectors.toList());
     }
 
