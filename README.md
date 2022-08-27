@@ -17,7 +17,7 @@ The app creates four REST API endpoints:
 - /api/v1/reservations
 
 The data comes from a H2 memory database, with the entity tables, data and join tables:
-- Customer
-- Planet + PlanetType
-- Spaceship
-- Reservation
+- Customers
+- Planets + PlanetTypes
+- Spaceships
+- Reservations
