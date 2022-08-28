@@ -5,7 +5,7 @@ This is a Spring Boot REST/JPA backend demo, made for educational purposes. The 
 
 ### Technologies
 - Java 17
-- Spring Boot 2.7.2
+- Spring Boot 2.7.2, with Data (JPA) & Web (REST)
 
 ### Purpose
 Create a backend serving Json-based data via REST services. Serving the frontend [SpacePortalFrontend](https://github.com/RonniKahalani/SpacePortalFrontend)
