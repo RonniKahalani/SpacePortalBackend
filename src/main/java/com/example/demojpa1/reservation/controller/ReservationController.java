@@ -4,6 +4,7 @@ import com.example.demojpa1.advice.ResourceNotFoundException;
 import com.example.demojpa1.dto.CustomerDto;
 import com.example.demojpa1.dto.PlanetDto;
 import com.example.demojpa1.dto.ReservationDto;
+import com.example.demojpa1.dto.SpaceshipDto;
 import com.example.demojpa1.factory.DtoFactory;
 import com.example.demojpa1.reservation.model.Reservation;
 import com.example.demojpa1.reservation.repository.ReservationRepository;
@@ -133,6 +134,18 @@ public class ReservationController {
     public ResponseEntity<PlanetDto> findPlanet(@PathVariable("id") Long id) {
         Optional<Reservation> item = service.find(id);
         return ResponseEntity.of(Optional.of(DtoFactory.fromPlanet(item.get().getPlanet())));
+    }
+    
+    /**
+     * Handles listing the reservation spaceship.
+     *
+     * @param id
+     * @return reservation spaceship
+     */
+    @GetMapping("/{id}/spaceship")
+    public ResponseEntity<SpaceshipDto> findSpaceship(@PathVariable("id") Long id) {
+        Optional<Reservation> item = service.find(id);
+        return ResponseEntity.of(Optional.of(DtoFactory.fromSpaceship(item.get().getSpaceship())));
     }
 
     /**
