@@ -7,7 +7,6 @@ import com.example.demojpa1.dto.ReservationDto;
 import com.example.demojpa1.dto.SpaceshipDto;
 import com.example.demojpa1.factory.DtoFactory;
 import com.example.demojpa1.reservation.model.Reservation;
-import com.example.demojpa1.reservation.repository.ReservationRepository;
 import com.example.demojpa1.reservation.service.ReservationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +23,6 @@ import java.util.Optional;
 @RequestMapping("api/v1/reservations")
 public class ReservationController {
     /**
-     * Repository for reservations.
-     */
-    private final ReservationRepository repository;
-    /**
      * Service for reservations.
      */
     private final ReservationService service;
@@ -35,11 +30,9 @@ public class ReservationController {
     /**
      * Constructor with injected repository and service.
      *
-     * @param repository
      * @param service
      */
-    public ReservationController(ReservationRepository repository, ReservationService service) {
-        this.repository = repository;
+    public ReservationController(ReservationService service) {
         this.service = service;
     }
 
@@ -51,7 +44,7 @@ public class ReservationController {
      */
     @GetMapping
     ResponseEntity<List<ReservationDto>> findAll() {
-        List<Reservation> all = (List<Reservation>) repository.findAll();
+        List<Reservation> all = (List<Reservation>) service.findAll();
         return ResponseEntity.ok().body(DtoFactory.fromReservations(all));
     }
 

@@ -4,7 +4,6 @@ import com.example.demojpa1.advice.ResourceNotFoundException;
 import com.example.demojpa1.dto.SpaceshipDto;
 import com.example.demojpa1.factory.DtoFactory;
 import com.example.demojpa1.spaceship.model.Spaceship;
-import com.example.demojpa1.spaceship.repository.SpaceshipRepository;
 import com.example.demojpa1.spaceship.service.SpaceshipService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +20,6 @@ import java.util.Optional;
 @RequestMapping("api/v1/spaceships")
 public class SpaceshipController {
     /**
-     * Repository for spaceships.
-     */
-    private final SpaceshipRepository repository;
-    /**
      * Service for spaceship.
      */
     private final SpaceshipService service;
@@ -32,11 +27,9 @@ public class SpaceshipController {
     /**
      * Constructor with injected repository and service.
      *
-     * @param repository
      * @param service
      */
-    public SpaceshipController(SpaceshipRepository repository, SpaceshipService service) {
-        this.repository = repository;
+    public SpaceshipController(SpaceshipService service) {
         this.service = service;
     }
 
@@ -48,7 +41,7 @@ public class SpaceshipController {
      */
     @GetMapping
     ResponseEntity<List<SpaceshipDto>> findAll() {
-        List<Spaceship> all = (List<Spaceship>) repository.findAll();
+        List<Spaceship> all = (List<Spaceship>) service.findAll();
         return ResponseEntity.ok().body(DtoFactory.fromSpaceships(all));
     }
 

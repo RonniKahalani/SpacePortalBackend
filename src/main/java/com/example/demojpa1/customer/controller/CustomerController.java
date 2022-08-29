@@ -2,7 +2,6 @@ package com.example.demojpa1.customer.controller;
 
 import com.example.demojpa1.advice.ResourceNotFoundException;
 import com.example.demojpa1.customer.model.Customer;
-import com.example.demojpa1.customer.repository.CustomerRepository;
 import com.example.demojpa1.customer.service.CustomerService;
 import com.example.demojpa1.dto.CustomerDto;
 import com.example.demojpa1.factory.DtoFactory;
@@ -22,10 +21,6 @@ import java.util.Optional;
 public class CustomerController {
 
     /**
-     * Repository for customers.
-     */
-    private final CustomerRepository repository;
-    /**
      * Service for customers.
      */
     private final CustomerService service;
@@ -33,11 +28,9 @@ public class CustomerController {
     /**
      * Constructor, with injected repository and service references.
      *
-     * @param repository
      * @param service
      */
-    public CustomerController(CustomerRepository repository, CustomerService service) {
-        this.repository = repository;
+    public CustomerController(CustomerService service) {
         this.service = service;
     }
 
@@ -49,7 +42,7 @@ public class CustomerController {
      */
     @GetMapping
     ResponseEntity<List<CustomerDto>> findAll() {
-        List<Customer> all = (List<Customer>) repository.findAll();
+        List<Customer> all = (List<Customer>) service.findAll();
         return ResponseEntity.ok().body(DtoFactory.fromCustomers(all));
     }
 

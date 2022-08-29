@@ -4,7 +4,6 @@ import com.example.demojpa1.advice.ResourceNotFoundException;
 import com.example.demojpa1.dto.PlanetDto;
 import com.example.demojpa1.factory.DtoFactory;
 import com.example.demojpa1.planet.model.Planet;
-import com.example.demojpa1.planet.repository.PlanetRepository;
 import com.example.demojpa1.planet.service.PlanetService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +20,6 @@ import java.util.Optional;
 @RequestMapping("api/v1/planets")
 public class PlanetController {
     /**
-     * Repository for planets.
-     */
-    private final PlanetRepository repository;
-    /**
      * Service for planets.
      */
     private final PlanetService service;
@@ -32,11 +27,9 @@ public class PlanetController {
     /**
      * Constructor with injected repository and service.
      *
-     * @param repository
      * @param service
      */
-    public PlanetController(PlanetRepository repository, PlanetService service) {
-        this.repository = repository;
+    public PlanetController(PlanetService service) {
         this.service = service;
     }
 
@@ -48,7 +41,7 @@ public class PlanetController {
      */
     @GetMapping
     ResponseEntity<List<PlanetDto>> findAll() {
-        List<Planet> all = (List<Planet>) repository.findAll();
+        List<Planet> all = (List<Planet>) service.findAll();
         return ResponseEntity.ok().body(DtoFactory.fromPlanets(all));
     }
 
@@ -62,7 +55,7 @@ public class PlanetController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<PlanetDto> find(@PathVariable("id") Long id) throws ResourceNotFoundException {
-        Optional<Planet> item = Optional.of(repository.findById(id)
+        Optional<Planet> item = Optional.of(service.find(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Planet %d not found.".formatted(id))));
         return ResponseEntity.ok().body(DtoFactory.fromPlanet(item.get()));
     }
