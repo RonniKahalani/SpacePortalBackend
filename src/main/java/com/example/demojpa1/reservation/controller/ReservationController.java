@@ -135,7 +135,7 @@ public class ReservationController {
         Optional<Reservation> item = service.find(id);
         return ResponseEntity.of(Optional.of(DtoFactory.fromPlanet(item.get().getPlanet())));
     }
-    
+
     /**
      * Handles listing the reservation spaceship.
      *
