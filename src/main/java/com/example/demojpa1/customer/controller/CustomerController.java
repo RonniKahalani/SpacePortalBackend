@@ -40,8 +40,8 @@ public class CustomerController {
      * @return customers
      * @see <a href="http://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">HTTP GET</a>
      */
-    @GetMapping("/test")
-    ResponseEntity<List<CustomerDto>> findAllOrderByirstName() {
+    @GetMapping("/orderfirstname")
+    ResponseEntity<List<CustomerDto>> findAllOrderByFirstName() {
         List<Customer> all = (List<Customer>) service.findAllOrderByFirstName();
         return ResponseEntity.ok().body(DtoFactory.fromCustomers(all));
     }
@@ -51,9 +51,9 @@ public class CustomerController {
      * @return customers
      * @see <a href="http://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">HTTP GET</a>
      */
-    @GetMapping("/contain")
-    ResponseEntity<List<CustomerDto>> findAllFirstNameContaining() {
-        List<Customer> all = (List<Customer>) service.findAllCustomersFirstNameContaining("m");
+    @GetMapping("/firstname/{value}")
+    ResponseEntity<List<CustomerDto>> findAllFirstNameContaining(@PathVariable("value") String value) {
+        List<Customer> all = (List<Customer>) service.findAllCustomersFirstNameContaining(value);
         return ResponseEntity.ok().body(DtoFactory.fromCustomers(all));
     }
     /**
