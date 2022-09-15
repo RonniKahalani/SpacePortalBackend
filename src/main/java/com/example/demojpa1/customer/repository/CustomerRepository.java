@@ -10,10 +10,9 @@ import org.springframework.data.repository.CrudRepository;
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
   List<Customer> findByLastName(String lastName);
+  Optional<Customer> findById(long id);
 
   List<Customer> findAllByFirstNameIsContaining(String value);
-
-  Optional<Customer> findById(long id);
 
   @Query("SELECT c FROM Customer c ORDER BY c.firstName")
   List<Customer> findAllOrderByFirstName();
