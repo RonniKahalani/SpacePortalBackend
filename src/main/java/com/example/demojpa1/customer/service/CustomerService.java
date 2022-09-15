@@ -2,6 +2,8 @@ package com.example.demojpa1.customer.service;
 
 import com.example.demojpa1.advice.ResourceNotFoundException;
 import com.example.demojpa1.customer.model.Customer;
+import com.example.demojpa1.customer.repository.CustomerRepository;
+import org.hibernate.engine.spi.PersistenceContext;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +18,35 @@ public class CustomerService {
     /**
      * Fetches the {@link com.example.demojpa1.planet.model.Planet Planet}
      */
-    private final CrudRepository<Customer, Long> repository;
+    private final CustomerRepository repository;
 
-    public CustomerService(CrudRepository<Customer, Long> repository) {
+    public CustomerService(CustomerRepository repository) {
         this.repository = repository;
+    }
+
+
+    /**
+     * Finds all customers ordered by first name.
+     *
+     * @return all customers
+     */
+    public Iterable<Customer> findAllOrderByFirstName() {
+        List<Customer> list = new ArrayList<>();
+        Iterable<Customer> items = repository.findAllOrderByFirstName();
+        items.forEach(list::add);
+        return list;
+    }
+
+    /**
+     * Finds all customers containing.
+     *
+     * @return all customers
+     */
+    public Iterable<Customer> findAllCustomersFirstNameContaining(String value) {
+        List<Customer> list = new ArrayList<>();
+        Iterable<Customer> items = repository.findAllByFirstNameIsContaining(value);
+        items.forEach(list::add);
+        return list;
     }
 
     /**

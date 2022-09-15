@@ -1,7 +1,7 @@
 package com.example.demojpa1.reservation.service;
 
 import com.example.demojpa1.reservation.model.Reservation;
-import org.springframework.data.repository.CrudRepository;
+import com.example.demojpa1.reservation.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,9 +11,9 @@ import java.util.Optional;
 @Service
 public class ReservationService {
 
-    private final CrudRepository<Reservation, Long> repository;
+    private final ReservationRepository repository;
 
-    public ReservationService(CrudRepository<Reservation, Long> repository) {
+    public ReservationService(ReservationRepository repository) {
         this.repository = repository;
     }
 

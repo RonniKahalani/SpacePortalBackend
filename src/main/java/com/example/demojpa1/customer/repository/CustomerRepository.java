@@ -4,12 +4,18 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.demojpa1.customer.model.Customer;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
   List<Customer> findByLastName(String lastName);
 
+  List<Customer> findAllByFirstNameIsContaining(String value);
+
   Optional<Customer> findById(long id);
+
+  @Query("SELECT c FROM Customer c ORDER BY c.firstName")
+  List<Customer> findAllOrderByFirstName();
 
 }

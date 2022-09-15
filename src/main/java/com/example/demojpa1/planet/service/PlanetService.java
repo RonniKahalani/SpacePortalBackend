@@ -1,8 +1,7 @@
 package com.example.demojpa1.planet.service;
-import com.example.demojpa1.advice.ResourceNotFoundException;
-import com.example.demojpa1.customer.model.Customer;
+
 import com.example.demojpa1.planet.model.Planet;
-import org.springframework.data.repository.CrudRepository;
+import com.example.demojpa1.planet.repository.PlanetRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,9 +11,9 @@ import java.util.Optional;
 @Service
 public class PlanetService {
 
-    private final CrudRepository<Planet, Long> repository;
+    private final PlanetRepository repository;
 
-    public PlanetService(CrudRepository<Planet, Long> repository) {
+    public PlanetService(PlanetRepository repository) {
 
         this.repository = repository;
     }

@@ -1,7 +1,7 @@
 package com.example.demojpa1.spaceship.service;
 
 import com.example.demojpa1.spaceship.model.Spaceship;
-import org.springframework.data.repository.CrudRepository;
+import com.example.demojpa1.spaceship.repository.SpaceshipRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,9 +11,9 @@ import java.util.Optional;
 @Service
 public class SpaceshipService {
 
-    private final CrudRepository<Spaceship, Long> repository;
+    private final SpaceshipRepository repository;
 
-    public SpaceshipService(CrudRepository<Spaceship, Long> repository) {
+    public SpaceshipService(SpaceshipRepository repository) {
         this.repository = repository;
     }
 

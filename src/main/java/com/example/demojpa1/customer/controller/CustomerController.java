@@ -35,6 +35,28 @@ public class CustomerController {
     }
 
     /**
+     * Handles getting/finding all customers ordered by first name.
+     *
+     * @return customers
+     * @see <a href="http://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">HTTP GET</a>
+     */
+    @GetMapping("/test")
+    ResponseEntity<List<CustomerDto>> findAllOrderByirstName() {
+        List<Customer> all = (List<Customer>) service.findAllOrderByFirstName();
+        return ResponseEntity.ok().body(DtoFactory.fromCustomers(all));
+    }
+    /**
+     * Handles getting/finding all customers.
+     *
+     * @return customers
+     * @see <a href="http://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">HTTP GET</a>
+     */
+    @GetMapping("/contain")
+    ResponseEntity<List<CustomerDto>> findAllFirstNameContaining() {
+        List<Customer> all = (List<Customer>) service.findAllCustomersFirstNameContaining("m");
+        return ResponseEntity.ok().body(DtoFactory.fromCustomers(all));
+    }
+    /**
      * Handles getting/finding all customers.
      *
      * @return customers
