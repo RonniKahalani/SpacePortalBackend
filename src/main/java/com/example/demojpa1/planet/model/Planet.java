@@ -24,8 +24,8 @@ public class Planet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "NAME")
 
+    @Column(name = "NAME")
     private String name;
 
     @Column(name = "MASS")

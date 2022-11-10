@@ -12,8 +12,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
   List<Customer> findByLastName(String lastName);
   Optional<Customer> findById(long id);
 
-
-
   List<Customer> findAllByFirstNameIsContaining(String value);
 
   @Query("SELECT c FROM Customer c ORDER BY c.firstName")

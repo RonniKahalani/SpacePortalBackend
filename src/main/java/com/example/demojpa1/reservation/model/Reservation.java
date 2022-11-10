@@ -3,12 +3,8 @@ package com.example.demojpa1.reservation.model;
 import com.example.demojpa1.customer.model.Customer;
 import com.example.demojpa1.planet.model.Planet;
 import com.example.demojpa1.spaceship.model.Spaceship;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 import javax.persistence.*;
