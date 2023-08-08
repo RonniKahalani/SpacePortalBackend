@@ -35,6 +35,9 @@ public class Spaceship {
     private Integer maxLoad;
 
     @Column(name = "WEIGHT")
+    private Long weight;
+
+    @Column(name = "BUILD")
     private Date buildDate;
 
     @Column(name = "NOTES")
@@ -63,6 +66,7 @@ public class Spaceship {
         this.maxPassengers = spaceship.maxPassengers;
         this.maxSpeed = spaceship.maxSpeed;
         this.maxLoad = spaceship.maxLoad;
+        this.weight = spaceship.weight;
         this.buildDate = spaceship.buildDate;
         this.notes = spaceship.notes;
         this.imageUrl = spaceship.imageUrl;
@@ -71,11 +75,11 @@ public class Spaceship {
         this.reservations = spaceship.reservations;
     }
 
-    public Spaceship(String name, int maxPassengers, int maxSpeed, int maxLoad, Date buildDate, String notes, String imageUrl, String videoUrl, String thumbnailUrl, List<Reservation> reservations)  {
-        this(name, maxPassengers, maxSpeed, maxLoad, buildDate, notes, imageUrl, videoUrl, thumbnailUrl);
+    public Spaceship(String name, int maxPassengers, int maxSpeed, int maxLoad, long weight, Date buildDate, String notes, String imageUrl, String videoUrl, String thumbnailUrl, List<Reservation> reservations)  {
+        this(name, maxPassengers, maxSpeed, maxLoad, weight, buildDate, notes, imageUrl, videoUrl, thumbnailUrl);
         this.reservations = reservations;
     }
-    public Spaceship(String name, int maxPassengers, int maxSpeed, int maxLoad, Date buildDate, String notes, String imageUrl, String videoUrl, String thumbnailUrl)  {
+    public Spaceship(String name, int maxPassengers, int maxSpeed, int maxLoad, long weight, Date buildDate, String notes, String imageUrl, String videoUrl, String thumbnailUrl)  {
         this.name = name;
         this.maxPassengers = maxPassengers;
         this.maxSpeed = maxSpeed;
@@ -87,8 +91,8 @@ public class Spaceship {
         this.thumbnailUrl = thumbnailUrl;
     }
 
-    public Spaceship(Long id, String name, int maxPassengers, int maxSpeed, int maxLoad, Date buildDate, String notes, String imageUrl, String videoUrl, String thumbnailUrl, List<Reservation> reservations) {
-        this(name, maxPassengers, maxSpeed, maxLoad, buildDate, notes, imageUrl, videoUrl, thumbnailUrl);
+    public Spaceship(Long id, String name, int maxPassengers, int maxSpeed, int maxLoad, long weight, Date buildDate, String notes, String imageUrl, String videoUrl, String thumbnailUrl, List<Reservation> reservations) {
+        this(name, maxPassengers, maxSpeed, maxLoad, weight, buildDate, notes, imageUrl, videoUrl, thumbnailUrl);
         this.id = id;
         this.reservations = reservations;
     }

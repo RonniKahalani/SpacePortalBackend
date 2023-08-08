@@ -100,9 +100,9 @@ public class DemoJpa1Application {
 
             List<Spaceship> spaceships = new ArrayList<>();
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-            spaceships.add( new Spaceship("Cube", 25, 100000, 100000,  dateFormat.parse("01-01-1977"), "An acceptable ride, if you have the time.", "media/spaceships/spaceship1.jpg", null, null));
-            spaceships.add( new Spaceship("Millennium Falcon", 250, 300000, 5000000, dateFormat.parse("01-01-2015"), "Great ship with lots of room and luxury features.", "media/spaceships/spaceship2.jpg", null, null));
-            spaceships.add( new Spaceship("Mining Shuttle", 5, 100000, 10000, dateFormat.parse("01-01-1990"), "Well, good luck, we hope that you get to your destination.", "media/spaceships/spaceship3.jpg", null, null));
+            spaceships.add( new Spaceship("Cube", 25, 100000, 100000,  20000, dateFormat.parse("01-01-1977"), "An acceptable ride, if you have the time.", "media/spaceships/spaceship1.jpg", null, null));
+            spaceships.add( new Spaceship("Millennium Falcon", 250, 300000, 5000000, 30000, dateFormat.parse("01-01-2015"), "Great ship with lots of room and luxury features.", "media/spaceships/spaceship2.jpg", null, null));
+            spaceships.add( new Spaceship("Mining Shuttle", 5, 100000, 10000, 40000, dateFormat.parse("01-01-1990"), "Well, good luck, we hope that you get to your destination.", "media/spaceships/spaceship3.jpg", null, null));
             spaceshipRepository.saveAll(spaceships);
 
              /**
